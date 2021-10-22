@@ -5,13 +5,22 @@ name: CI to bitbucket
 on: [push, delete]
 
 jobs:
-  to_bitbucket:
-    runs-on: ubuntu-18.04
-    steps:                                              # <-- must use actions/checkout@v1 before mirroring!
-    - uses: actions/checkout@v1
-    - uses: pixta-dev/repository-mirroring-action@v1
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
       with:
-        target_repo_url:
-          git@bitbucket.org:Felipe_Navas/webserver-node.git
-        ssh_private_key:                                # <-- use 'secrets' to pass credential information.
-          ${{ secrets.BITBUCKET_SSH_PRIVATE_KEY }}
+        fetch-depth: '0'
+        ref: 'master'
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+         key: ${{ secrets.BITBUCKET_SSH_PRIVATE_KEY }}
+         name: id_rsa # optional
+         known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    - run: |
+        git remote add bitbucket git@bitbucket.org:Felipe_Navas/webserver-node.git
+        git config --global user.email "felipenavas.itec@gmail.com"
+        git config --global user.name "Felipe Navas"
+        git checkout master
+        git push -u bitbucket master
