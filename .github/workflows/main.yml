@@ -19,6 +19,7 @@ jobs:
          name: id_rsa # optional
          known_hosts: ${{ secrets.KNOWN_HOSTS }}
     - run: |
+        ssh -vT git@bitbucket.org
         git remote add bitbucket git@bitbucket.org:Felipe_Navas/webserver-node.git
         git config --global user.email "felipenavas.itec@gmail.com"
         git config --global user.name "Felipe Navas"
