@@ -15,5 +15,3 @@ jobs:
           git@bitbucket.org:Felipe_Navas/webserver-node.git
         ssh_private_key:                                # <-- use 'secrets' to pass credential information.
           ${{ secrets.BITBUCKET_SSH_PRIVATE_KEY }}
-        ssh_username:
-          felipenavas.itec@gmail.com
