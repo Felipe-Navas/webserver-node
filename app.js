@@ -14,7 +14,7 @@ hbs.registerPartials( __dirname + '/views/partials');
 // el contenido en la raiz de la aplicación
 // Entonces cuando invoque a '/' voy a estar invocando al index.html
 // de la carpeta 'public
-app.use( express.static('public') );
+app.use(express.static('public'));
 
 app.get('/', function (req, res) {
   // Este render esta levantando el archivo /views/home.hbs
