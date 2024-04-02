@@ -15,12 +15,13 @@ A webserver App in Node.js that uses Express and Handlebars to serve a static we
 
 ### Installing
 
-- Create a `.env` file in the root of the project and configure the `PORT` variable
 - Clone the repository and install dependencies:
 
 ```
 git clone https://github.com/Felipe-Navas/webserver-node.git && cd webserver-node && npm install
 ```
+
+- Create a `.env` file in the root of the project and configure the `PORT` variable
 
 ### Executing program
 
